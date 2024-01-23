@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:06:46 by uphokaew          #+#    #+#             */
-/*   Updated: 2023/12/17 21:07:27 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:31:08 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,34 @@ static int	checkspecifier(const char *specifier, int c)
 	return (0);
 }
 
-static int	format_specifier(const char specifier, va_list args)
+static void	f_specifier(const char specifier, va_list args, t_printf *p_len)
 {
-	int	length;
-
-	length = 0;
 	if (specifier == 'c')
-		length += ft_printchr(va_arg(args, int));
+		p_len->length += ft_printchr(va_arg(args, int));
 	else if (specifier == 's')
-		length += ft_printstr(va_arg(args, const char *));
+		p_len->length += ft_printstr(va_arg(args, const char *));
 	else if (specifier == 'd' || specifier == 'i')
-		length += ft_printint(va_arg(args, int));
+		p_len->length += ft_printint(va_arg(args, int));
 	else if (specifier == 'u')
-		length += ft_printuint(va_arg(args, unsigned int));
+		p_len->length += ft_printuint(va_arg(args, unsigned int));
 	else if (specifier == 'x')
-		length += ft_printhex(va_arg(args, unsigned int), 'a');
+		p_len->length += ft_printhex(va_arg(args, unsigned int), 'a');
 	else if (specifier == 'X')
-		length += ft_printhex(va_arg(args, unsigned int), 'A');
+		p_len->length += ft_printhex(va_arg(args, unsigned int), 'A');
 	else if (specifier == 'p')
-		length += ft_printptr(va_arg(args, uintptr_t));
-	return (length);
+		p_len->length += ft_printptr(va_arg(args, uintptr_t));
+	else if (specifier == '%')
+		p_len->length += ft_printchr('%');
+	else
+		p_len->length = -1;
 }
 
 int	ft_printf(const char *s, ...)
 {
-	int		length;
-	va_list	args;
+	t_printf	print;
+	va_list		args;
 
-	length = 0;
+	print.length = 0;
 	va_start (args, s);
 	while (*s != '\0')
 	{
@@ -62,15 +62,15 @@ int	ft_printf(const char *s, ...)
 			while (*(s + 1) == ' ')
 				s++;
 			s++;
-			if (*s == '%')
-				length += ft_printchr(*s);
-			else if (checkspecifier("cspdiuxX", *s) != 0)
-				length += format_specifier(*s, args);
+			if (checkspecifier("cspdiuxX%", *s) != 0)
+				f_specifier(*s, args, &print);
+			else
+				return (-1);
 		}
 		else
-			length += ft_printchr(*s);
+			print.length += ft_printchr(*s);
 		s++;
 	}
 	va_end(args);
-	return (length);
+	return (print.length);
 }

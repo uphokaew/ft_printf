@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:27:27 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/20 13:27:56 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:01:15 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@
 # define HEX "0123456789abcdef"
 # define STRNULL "(null)"
 
-// Main Function
+typedef struct t_printf
+{
+	int	length;
+}					t_printf;
+
 int		ft_printchr(int c);
 int		ft_printstr(const char *s);
 int		ft_printint(int n);
@@ -36,7 +40,6 @@ int		ft_printhex(unsigned int hex, int c);
 int		ft_printptr(uintptr_t ptr);
 int		ft_printf(const char *s, ...);
 
-// utils function
 char	*convert_int(int n);
 char	*convert_uint(unsigned int n);
 char	*convert_hex(unsigned int n, int c);
