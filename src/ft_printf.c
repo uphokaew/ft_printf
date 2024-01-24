@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:06:46 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/24 16:56:05 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:30:30 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,24 @@ static int	checkspecifier(const char *specifier, int c)
 	return (0);
 }
 
-static void	specifier(const char specifier, va_list args, t_printf *p_len)
+static void	specifier(const char specifier, va_list args, t_printf *print)
 {
 	if (specifier == 'c')
-		p_len->length += ft_printchr(va_arg(args, int));
+		print->length += ft_printchr(va_arg(args, int));
 	else if (specifier == 's')
-		p_len->length += ft_printstr(va_arg(args, const char *));
+		print->length += ft_printstr(va_arg(args, const char *));
 	else if (specifier == 'd' || specifier == 'i')
-		p_len->length += ft_printint(va_arg(args, int));
+		print->length += ft_printint(va_arg(args, int));
 	else if (specifier == 'u')
-		p_len->length += ft_printuint(va_arg(args, unsigned int));
+		print->length += ft_printuint(va_arg(args, unsigned int));
 	else if (specifier == 'x')
-		p_len->length += ft_printhex(va_arg(args, unsigned int), 'a');
+		print->length += ft_printhex(va_arg(args, unsigned int), 'a');
 	else if (specifier == 'X')
-		p_len->length += ft_printhex(va_arg(args, unsigned int), 'A');
+		print->length += ft_printhex(va_arg(args, unsigned int), 'A');
 	else if (specifier == 'p')
-		p_len->length += ft_printptr(va_arg(args, void *));
+		print->length += ft_printptr(va_arg(args, void *));
 	else if (specifier == '%')
-		p_len->length += ft_printchr('%');
+		print->length += ft_printchr('%');
 }
 
 int	ft_printf(const char *s, ...)
@@ -62,7 +62,7 @@ int	ft_printf(const char *s, ...)
 			else
 			{
 				print.length += ft_printchr('%');
-				print.length += ft_printchr(*s);
+				print.length += ft_printchr(*s);	
 			}
 		}
 		else
