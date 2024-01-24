@@ -6,13 +6,13 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:05:57 by uphokaew          #+#    #+#             */
-/*   Updated: 2023/11/29 22:54:18 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:29:35 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printptr(uintptr_t ptr)
+int	ft_printptr(void *ptr)
 {
 	int		length;
 	char	*str;

@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:08:53 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/20 13:27:51 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:35:55 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ static size_t	ptrlen(uintptr_t ptr)
 	return (len);
 }
 
-char	*convert_ptr(uintptr_t ptr)
+char	*convert_ptr(void *p)
 {
-	char	*s_ptr;
-	size_t	len;
-	size_t	i;
+	char		*s_ptr;
+	size_t		len;
+	size_t		i;
+	uintptr_t	ptr;
 
+	ptr = (uintptr_t)p;
 	len = ptrlen(ptr);
 	s_ptr = (char *)ft_calloc(len + 1, sizeof(char));
 	if (s_ptr == NULL)
@@ -40,7 +42,7 @@ char	*convert_ptr(uintptr_t ptr)
 	i = 0;
 	while (i < len)
 	{
-		*(s_ptr + (len - 1 - i)) = HEX[ptr % 16];
+		*(s_ptr + (len - 1 - i)) = "0123456789abcdef"[ptr % 16];
 		ptr /= 16;
 		i++;
 	}

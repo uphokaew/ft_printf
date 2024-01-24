@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 13:56:11 by uphokaew          #+#    #+#             */
-/*   Updated: 2023/10/14 13:11:43 by uphokaew         ###   ########.fr       */
+/*   Created: 2024/01/23 20:06:58 by uphokaew          #+#    #+#             */
+/*   Updated: 2024/01/24 16:20:13 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (lst == NULL || new == NULL)
-		return ;
-	new -> next = *lst;
-	*lst = new;
+	void	*p;
+	size_t	i;
+
+	if (count > SIZE_MAX)
+		return (NULL);
+	p = malloc(count * size);
+	if (p == NULL)
+		return (NULL);
+	i = count * size;
+	while (i > 0)
+	{
+		*(char *)(p + (i - 1)) = '\0';
+		i--;
+	}
+	return (p);
+}
+
+int	ft_isdigit(int c)
+{
+	return ('0' <= c && c <= '9');
 }

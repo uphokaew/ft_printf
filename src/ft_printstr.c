@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:10:25 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/23 17:11:56 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:01:09 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printstr(const char *s)
 	i = 0;
 	if (s == NULL)
 	{
-		write(1, STRNULL, 6);
+		write(1, "(null)", 6);
 		return (6);
 	}
 	while (*(s + i) != '\0')
