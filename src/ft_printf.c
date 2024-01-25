@@ -6,44 +6,44 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:06:46 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/24 17:30:30 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/25 23:26:06 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	checkspecifier(const char *specifier, int c)
+int	ft_printchr(int c)
 {
-	size_t	index;
-
-	index = 0;
-	while (*(specifier + index) != '\0')
-	{
-		if (*(specifier + index) == (char)c)
-			return (1);
-		index++;
-	}
-	return (0);
+	return (write(1, &c, 1));
 }
 
-static void	specifier(const char specifier, va_list args, t_printf *print)
+static int	specifier_check(const char specifier, va_list args)
 {
+	int	length;
+
+	length = 0;
 	if (specifier == 'c')
-		print->length += ft_printchr(va_arg(args, int));
+		length += ft_printchr(va_arg(args, int));
 	else if (specifier == 's')
-		print->length += ft_printstr(va_arg(args, const char *));
+		length += ft_printstr(va_arg(args, const char *));
 	else if (specifier == 'd' || specifier == 'i')
-		print->length += ft_printint(va_arg(args, int));
+		length += ft_printint(va_arg(args, int));
 	else if (specifier == 'u')
-		print->length += ft_printuint(va_arg(args, unsigned int));
+		length += ft_printuint(va_arg(args, unsigned int));
 	else if (specifier == 'x')
-		print->length += ft_printhex(va_arg(args, unsigned int), 'a');
+		length += ft_printhex(va_arg(args, unsigned int), 'a');
 	else if (specifier == 'X')
-		print->length += ft_printhex(va_arg(args, unsigned int), 'A');
+		length += ft_printhex(va_arg(args, unsigned int), 'A');
 	else if (specifier == 'p')
-		print->length += ft_printptr(va_arg(args, void *));
+		length += ft_printptr(va_arg(args, void *));
 	else if (specifier == '%')
-		print->length += ft_printchr('%');
+		length += ft_printchr('%');
+	else
+	{
+		length += ft_printchr('%');
+		length += ft_printchr(specifier);
+	}
+	return (length);
 }
 
 int	ft_printf(const char *s, ...)
@@ -51,22 +51,19 @@ int	ft_printf(const char *s, ...)
 	t_printf	print;
 
 	print.length = 0;
+	print.temp = 0;
 	va_start (print.args, s);
+	if (*s == '\0')
+		return (0);
 	while (*s != '\0')
 	{
 		if (*s == '%')
-		{
-			s++;
-			if (checkspecifier("cspdiuxX%", *s) != 0)
-				specifier(*s, print.args, &print);
-			else
-			{
-				print.length += ft_printchr('%');
-				print.length += ft_printchr(*s);	
-			}
-		}
+			print.temp = specifier_check(*(++s), print.args);
 		else
-			print.length += ft_printchr(*s);
+			print.temp = ft_printchr(*s);
+		if (print.temp == -1)
+			return (-1);
+		print.length += print.temp;
 		s++;
 	}
 	va_end(print.args);

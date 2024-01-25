@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:06:58 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/24 16:20:13 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:02:10 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,4 @@ void	*ft_calloc(size_t count, size_t size)
 		i--;
 	}
 	return (p);
-}
-
-int	ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
 }

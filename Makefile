@@ -8,7 +8,7 @@ OBJ_DIR = obj
 INC_DIR = include
 
 FILE = ft_printf ft_printstr ft_printint ft_printuint ft_printhex ft_printptr \
-		convert_int convert_hex convert_uint convert_ptr ft_printf_utils
+		ft_printf_utils
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILE:%=%.o))
 
