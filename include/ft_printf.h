@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:27:27 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 10:38:22 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:41:52 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct t_printf
 }					t_printf;
 
 int		ft_printchr(int c);
-int		ft_printstr(char *s);
+int		ft_printstr(const char *s);
 int		ft_printint(int n);
 int		ft_printuint(unsigned int n);
 int		ft_printhex(unsigned int hex, int c);

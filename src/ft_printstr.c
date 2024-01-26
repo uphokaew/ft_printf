@@ -6,18 +6,18 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:10:25 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 10:38:00 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:40:29 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printstr(char *s)
+int	ft_printstr(const char *s)
 {
 	int		length;
 
 	length = 0;
-	if (!s)
+	if (s == NULL)
 	{
 		if (write(1, "(null)", 6) == -1)
 			return (-1);
