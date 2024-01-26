@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:13:17 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/25 23:39:48 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:57:28 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_printint(int n)
 	str = convert_int(n);
 	if (str == NULL)
 		return (0);
-	length += ft_printstr(str);
+	length = ft_printstr(str);
 	free(str);
 	return (length);
 }

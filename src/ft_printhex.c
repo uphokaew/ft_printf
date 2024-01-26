@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:10:38 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/25 23:27:29 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:54:25 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_printhex(unsigned int hex, int c)
 	str = convert_hex(hex, c);
 	if (str == NULL)
 		return (0);
-	length += ft_printstr(str);
+	length = ft_printstr(str);
 	free(str);
 	return (length);
 }
