@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:27:27 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 14:49:17 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:06:34 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_printstr(const char *s);
 int		ft_printint(int n);
 int		ft_printuint(unsigned int n);
 int		ft_printhex(unsigned int hex, char c);
-int		ft_printptr(unsigned long long ptr);
+int		ft_printptr(uintptr_t ptr);
 int		ft_printf(const char *s, ...);
 
 #endif
