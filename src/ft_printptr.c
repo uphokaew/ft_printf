@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:05:57 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 14:56:23 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:00:15 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_printptr(unsigned long long ptr)
 	length = 2;
 	symbol = "0123456789abcdef";
 	div = 1;
+	if (ptr == NULL)
+		return (ft_printstr(PNULL));
 	temp = ptr;
 	while (temp >= 16)
 	{
