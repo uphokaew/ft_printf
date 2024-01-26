@@ -6,49 +6,54 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:13:17 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 10:54:41 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:39:45 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*convert_int(int n)
+static int	print_digit(int n, int length)
 {
-	size_t	len;
-	char	*s_int;
-	long	nbr;
+	int	temp;
+	int	div;
+	int	ret;
 
-	nbr = (long)n;
-	len = len_digit(n, 10);
-	s_int = (char *)ft_calloc(len + 1, sizeof(char));
-	if (s_int == NULL)
-		return (NULL);
-	if (nbr == 0)
-		*(s_int + 0) = '0';
-	if (nbr < 0)
+	div = 1;
+	temp = n;
+	while (temp >= 10)
 	{
-		*(s_int + 0) = '-';
-		nbr *= -1;
+		temp /= 10;
+		div *= 10;
 	}
-	while (nbr > 0 && len > 0)
+	while (div > 0)
 	{
-		*(s_int + (len - 1)) = (nbr % 10) + '0';
-		nbr /= 10;
-		len--;
+		ret = n / div + '0';
+		if (write(1, &ret, 1) == -1)
+			return (-1);
+		length++;
+		n %= div;
+		div /= 10;
 	}
-	return (s_int);
+	return (length);
 }
 
 int	ft_printint(int n)
 {
 	int		length;
-	char	*str;
 
 	length = 0;
-	str = convert_int(n);
-	if (str == NULL)
-		return (0);
-	length = ft_printstr(str);
-	free(str);
-	return (length);
+	if (n == -2147483648)
+	{
+		if (write(1, "-2147483648", 11) == -1)
+			return (-1);
+		return (11);
+	}
+	if (n < 0)
+	{
+		if (write(1, "-", 1) == -1)
+			return (-1);
+		n *= -1;
+		length++;
+	}
+	return (print_digit(n, length));
 }

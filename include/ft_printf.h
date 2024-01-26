@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:27:27 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 10:55:01 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:07:36 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		ft_printuint(unsigned int n);
 int		ft_printhex(unsigned int hex, int c);
 int		ft_printptr(void *ptr);
 int		ft_printf(const char *s, ...);
+int		ft_print_digit(int n, int length, int base);
 void	*ft_calloc(size_t count, size_t size);
-size_t	len_digit(int n, int base);
+
 #endif
