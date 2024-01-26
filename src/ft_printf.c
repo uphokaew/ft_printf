@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:06:46 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 10:43:32 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:44:44 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static int	specifier_check(const char specifier, va_list args)
 		length += ft_printptr(va_arg(args, void *));
 	else if (specifier == '%')
 		length += ft_printchr('%');
-	else
-		return (-1);
 	return (length);
 }
 

@@ -6,33 +6,11 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:13:17 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 08:57:28 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:54:41 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static size_t	intlen(int n)
-{
-	size_t	len;
-	long	nbr;
-
-	len = 0;
-	nbr = (long)n;
-	if (nbr == 0)
-		len = 1;
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		len += 1;
-	}
-	while (nbr > 0)
-	{
-		nbr /= 10;
-		len++;
-	}
-	return (len);
-}
 
 static char	*convert_int(int n)
 {
@@ -41,7 +19,7 @@ static char	*convert_int(int n)
 	long	nbr;
 
 	nbr = (long)n;
-	len = intlen(n);
+	len = len_digit(n, 10);
 	s_int = (char *)ft_calloc(len + 1, sizeof(char));
 	if (s_int == NULL)
 		return (NULL);

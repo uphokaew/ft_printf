@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:05:57 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/25 23:24:18 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:00:16 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	ft_printptr(void *ptr)
 	length = 0;
 	str = NULL;
 	if (ptr == 0)
-		length += ft_printstr(PNULL);
+		length = ft_printstr(PNULL);
 	else
 	{
-		length += ft_printstr("0x");
+		length = ft_printstr("0x");
 		str = convert_ptr(ptr);
 		if (str == NULL)
 			return (0);
