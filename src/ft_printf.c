@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:06:46 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 10:44:44 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:49:05 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ static int	specifier_check(const char specifier, va_list args)
 		length += ft_printint(va_arg(args, int));
 	else if (specifier == 'u')
 		length += ft_printuint(va_arg(args, unsigned int));
-	else if (specifier == 'x')
-		length += ft_printhex(va_arg(args, unsigned int), 'a');
-	else if (specifier == 'X')
-		length += ft_printhex(va_arg(args, unsigned int), 'A');
+	else if (specifier == 'x' || specifier == 'X')
+		length += ft_printhex(va_arg(args, unsigned int), specifier);
 	else if (specifier == 'p')
-		length += ft_printptr(va_arg(args, void *));
+		length += ft_printptr(va_arg(args, unsigned long long));
 	else if (specifier == '%')
 		length += ft_printchr('%');
 	return (length);

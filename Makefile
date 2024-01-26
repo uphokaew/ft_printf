@@ -7,8 +7,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = include
 
-FILE = ft_printf ft_printstr ft_printint ft_printuint ft_printhex ft_printptr \
-		ft_printf_utils
+FILE = ft_printf ft_printstr ft_printint ft_printuint ft_printhex ft_printptr
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILE:%=%.o))
 

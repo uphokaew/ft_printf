@@ -6,7 +6,7 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:03:12 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 13:36:43 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:52:04 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_printuint(unsigned int n)
 {
-	int	length;
-	int	ret;
+	int				length;
+	int				ret;
 	unsigned int	temp;
 	unsigned int	div;
 

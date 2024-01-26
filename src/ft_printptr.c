@@ -6,66 +6,37 @@
 /*   By: uphokaew <uphokaew@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:05:57 by uphokaew          #+#    #+#             */
-/*   Updated: 2024/01/26 11:00:16 by uphokaew         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:56:23 by uphokaew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ptrlen(uintptr_t ptr)
+int	ft_printptr(unsigned long long ptr)
 {
-	size_t	len;
-
-	len = 0;
-	if (ptr <= 0)
-		len = 1;
-	while (ptr > 0)
-	{
-		ptr /= 16;
-		len++;
-	}
-	return (len);
-}
-
-static char	*convert_ptr(void *p)
-{
-	char		*s_ptr;
-	size_t		len;
-	size_t		i;
-	uintptr_t	ptr;
-
-	ptr = (uintptr_t)p;
-	len = ptrlen(ptr);
-	s_ptr = (char *)ft_calloc(len + 1, sizeof(char));
-	if (s_ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		*(s_ptr + (len - 1 - i)) = "0123456789abcdef"[ptr % 16];
-		ptr /= 16;
-		i++;
-	}
-	return (s_ptr);
-}
-
-int	ft_printptr(void *ptr)
-{
+	unsigned long long	temp;
+	unsigned long long	div;
 	int		length;
-	char	*str;
+	char	*symbol;
 
-	length = 0;
-	str = NULL;
-	if (ptr == 0)
-		length = ft_printstr(PNULL);
-	else
+	length = 2;
+	symbol = "0123456789abcdef";
+	div = 1;
+	temp = ptr;
+	while (temp >= 16)
 	{
-		length = ft_printstr("0x");
-		str = convert_ptr(ptr);
-		if (str == NULL)
-			return (0);
-		length += ft_printstr(str);
+		temp /= 16;
+		div *= 16;
 	}
-	free(str);
+	if (write(1, "0x", 2) == -1)
+		return (-1);
+	while (div > 0)
+	{
+		if (write(1, (symbol + (ptr / div)), 1) == -1)
+			return (0);
+		length++;
+		ptr %= div;
+		div /= 16;
+	}
 	return (length);
 }
